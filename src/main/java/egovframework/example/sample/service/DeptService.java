@@ -11,6 +11,7 @@ public interface DeptService {
 	public DeptVO selectDeptDetail(int deptno) throws Exception;
 	/* 데이터 타입이 아니라 결과 값이 1이나 0 같은 식으로 넘어가기 때문에 return값을 int로 설정한다. */
 	public int deleteDept(int deptno) throws Exception;
+	public int updateDept(DeptVO vo) throws Exception;
 	
 }
 
