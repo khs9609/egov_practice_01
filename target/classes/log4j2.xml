@@ -6,7 +6,8 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="java.sql" level="INFO" additivity="false">
+    <!-- info를 DEBUGfh 바꿔줄거임__SQL의 log를 담당하는 파일이다.-->
+        <Logger name="java.sql" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
         <Logger name="egovframework" level="DEBUG" additivity="false">
