@@ -13,21 +13,33 @@
 <title>목록 출력</title>
 </head>
 <style>
+.wrap { margin : 0 auto; width : 800px; height : 1200px;}
 body { font-size : 9pt;}
 button { font-size:9pt;padding : 3px;width : 100px; background-color : black;border-radius: 5px;
-border : none;color : white;}
+		border : none;color : white;}
 table{ width : 600px; border-collapse: collapse; }
 th, td { border: 1px solid black; padding : 5px;}
 th { background-color : lightblue;}
 table caption { font-size : 15pt; margin-bottom : 5px; }
+.div1 {width : 600px;text-align : center;font-size : 15pt; }
+.div2 { width:600px;text-align : left; font-size : 8pt;  }
 </style>
 <body>
 
 <table>
-	<caption>
-	<div>일반게시판 목록</div>
-	<div>Total : ${total }</div>
-	</caption>
+<div class="div1">일반게시판 목록</div>
+<div class="div2">Total : ${total }개</div>
+<div class="div2" style="margin-bottom : 5px;">
+	<form name="searchFrm" method : "post" action ="boardList.do">
+		<select name="searchGubun" id="searchGubun">
+			<option value="title">제목</option>
+			<option value="name">글쓴이</option>
+			<option value="content">내용</option>
+		</select>
+		<input type="text" id="searchText" name="searchText">
+		<button type="submit" style="width : 50px;">검색</button>
+	</form>
+</div>
 	<tr>
 		<th width="15%">번호</th>
 		<th width="40%">제목</th>
@@ -36,18 +48,23 @@ table caption { font-size : 15pt; margin-bottom : 5px; }
 		<th width="15%">조회수</th>
 	</tr>
 	
-	<c:set var="rownum" value="1" />
+	<c:set var="cnt" value="${rowNumber }" />
+	
 	<c:forEach var="result" items="${resultList }">
 	
 	<tr align="center">
-		<td>${ rownum }</td>
-		<td>${result.title }</td>
+		<td>${ cnt }</td>
+		<td align="left">
+		<a href="boardDetail.do?unq=${result.unq }">
+		${result.title }
+		</a>
+		</td>
 		<td>${result.name }</td>
 		<td>${result.rdate }</td>
 		<td>${result.hits }</td>
 	</tr>
 	
-	<c:set var="rownum" value="${rownum + 1}" />
+	<c:set var="cnt" value="${cnt - 1}" />
 	</c:forEach>
 	
 </table>
@@ -61,6 +78,7 @@ table caption { font-size : 15pt; margin-bottom : 5px; }
 	<div style="width:600px;margin-top:5px;text-align : right;">
 		<button type="button" onclick=" location='boardWrite.do' ">글쓰기</button>
 	</div>
+
 
 
 </body>

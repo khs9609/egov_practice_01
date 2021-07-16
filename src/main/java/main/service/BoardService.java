@@ -10,4 +10,7 @@ public interface BoardService {
 	
 	//Total 개수 얻기
 	public int selectNBoardTotal(BoardVO vo) throws Exception;
+	
+	//게시판 상세보기 화면
+	public BoardVO selectNBoardDetail(int unq) throws Exception;
 }

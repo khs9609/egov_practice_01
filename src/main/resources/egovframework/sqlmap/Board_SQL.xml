@@ -20,7 +20,7 @@
 	
 	<!-- List > HashMap  -->
 	<select  id="boardDAO.selectNBoardList" resultClass="egovMap">
-		<![CDATA[
+		
 select b.* from (
 	select rownum rn, a.* from(
 		select      unq, 
@@ -28,15 +28,38 @@ select b.* from (
 					name, 
 					hits, 
 					to_char(rdate,'yyyy-mm-dd') as rdate
-		from 	nboard 
-		order by unq desc) a ) b
-		where 
-			rn >= #startIndex# and rn <= #endIndex#
-]]>
+		FROM 	nboard 
+		
+		
+		<!-- null이 아닐 경우 실행되는 조건식 -->
+		<isNotNull property="searchGubun">
+			<isNotNull property="searchText">
+			WHERE $searchGubun$ like '%$searchText$%'
+			</isNotNull>
+		</isNotNull>
+		
+		
+		ORDER BY unq desc ) a ) b
+	where 
+			rn >= #startIndex# and rn <![CDATA[ <= ]]> #endIndex#
+
 	</select>	
 	
 	<select id="boardDAO.selectNBoardTotal" resultClass="java.lang.Integer">
 		SELECT count(*) total FROM nboard
+		<!-- 검색결과가 Total에 담길 수 있도록 -->
+		<isNotNull property="searchGubun">
+			<isNotNull property="searchText">
+			WHERE $searchGubun$ like '%$searchText$%'
+			</isNotNull>
+		</isNotNull>
+	</select>
+	
+	<select id="boardDAO.selectNBoardDetail" resultClass="boardVO">
+		SELECT 
+			unq,title,name,hits,rdate
+		FROM  nboard 
+		WHERE unq='$unq$'
 	</select>
 	
 	
