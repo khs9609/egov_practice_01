@@ -8,7 +8,7 @@ public class BoardVO {
 	public String name;
 	public String content;
 	public int hits;
-	public int rdate;
+	public String rdate;
 	
 	private int viewPage = 1;
 	private int startIndex = 1;
@@ -85,10 +85,10 @@ public class BoardVO {
 	public void setHits(int hits) {
 		this.hits = hits;
 	}
-	public int getRdate() {
+	public String getRdate() {
 		return rdate;
 	}
-	public void setRdate(int rdate) {
+	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
 	

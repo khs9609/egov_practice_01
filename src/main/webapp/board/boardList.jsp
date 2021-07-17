@@ -55,9 +55,7 @@ table caption { font-size : 15pt; margin-bottom : 5px; }
 	<tr align="center">
 		<td>${ cnt }</td>
 		<td align="left">
-		<a href="boardDetail.do?unq=${result.unq }">
-		${result.title }
-		</a>
+		<a href="boardDetail.do?unq=${result.unq }"> ${result.title } </a>
 		</td>
 		<td>${result.name }</td>
 		<td>${result.rdate }</td>
