@@ -55,9 +55,18 @@
 		</isNotNull>
 	</select>
 	<select id="boardDAO.selectNBoardDetail" resultClass="BoardVO">
-		SELECT unq,title,pass,name,content,hits,rdate FROM nboard
+		SELECT 	unq,
+				title,
+				name,
+				content,
+				hits,
+				to_char(rdate,'yyyy-mm-dd') as rdate 
+		FROM nboard
 			WHERE unq='$unq$'
 	</select>
+	<update id="boardDAO.updateNBoardHits">
+		update nboard set hits = hits+1 where unq=#unq#
+	</update>
 	
 </sqlMap>
 
