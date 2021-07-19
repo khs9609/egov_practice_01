@@ -102,8 +102,9 @@ table caption { font-size : 15pt; margin-bottom : 5px; }
 	</tr>
 	<tr>
 		<th colspan="2">
-		<button type="button">수정</button>
-		<button type="button">삭제</button>
+		<button type="button" onclick=" location='boardList.do' ">목록</button>
+		<button type="button" onclick=" location='boardModifyWrite.do?unq=${boardVO.unq}' ">수정</button>
+		<button type="button" onclick=" location='passWrite.do?unq=${boardVO.unq}' ">삭제</button>
 		</th>
 	</tr>
 </table>

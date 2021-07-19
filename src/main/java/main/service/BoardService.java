@@ -15,4 +15,10 @@ public interface BoardService {
 	public BoardVO selectNBoardDetail(int unq) throws Exception;
 		//조회수 증가
 	public int updateNBoardHits(int unq) throws Exception;
+	//게시판 수정처리
+	public int updateNBoard(BoardVO vo) throws Exception;
+	
+	//암호 확인
+	public int selectNBoardPass(BoardVO vo) throws Exception;
+	
 }

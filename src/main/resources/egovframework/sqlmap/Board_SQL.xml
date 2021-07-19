@@ -6,6 +6,14 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="BoardVO" type="main.service.BoardVO"/>
 
+	<!--
+	resultClass에
+	List가 넘어가면 egovMap
+	정보가 넘어가면 BoardVO
+	숫자가 넘어가면 해당 타입 클래스
+	 -->
+	
+	
 	<insert id="boardDAO.insertNBoard">
 		INSERT INTO nboard(unq,title,pass,name,content,hits,rdate)
 				VALUES(
@@ -68,5 +76,22 @@
 		update nboard set hits = hits+1 where unq=#unq#
 	</update>
 	
+	<update id="boardDAO.updateNBoard">
+		UPDATE nboard SET 
+			title = #title#,
+			name = #name#,
+			content = #content#
+		WHERE 
+			unq = #unq#
+	</update>
+	
+	<select id="boardDAO.selectNBoardPass" resultClass="java.lang.Integer">
+		SELECT COUNT(*) FROM nboard WHERE unq=#unq# AND pass=#pass#
+	</select>
+	
 </sqlMap>
+
+
+
+
 

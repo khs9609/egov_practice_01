@@ -53,7 +53,7 @@ table caption { font-size : 15pt; margin-bottom : 5px; }
 		success : function(data){ //성공했을 경우 // controller -> "ok","fail"
 			if(data == "ok") {
 				alert("저장완료");
-				location : "boardList.do";
+				location="boardList.do"
 			} else {
 				alert("저장실패");				
 			}
@@ -62,6 +62,7 @@ table caption { font-size : 15pt; margin-bottom : 5px; }
 			alert("오류발생"); //여기서의 오류가 뜬다면 거의 시스템 오류일 것이다.(장애발생)
 		}
 	});
+}
 	
 	/* 	if(document.frm.title.value == ""){
 	alert("제목을 입력해주세요");
@@ -78,7 +79,7 @@ if(document.frm.pass.value == ""){
 //전에는 이렇게 썻지만 이번에는j-query를 이용해보려한다.
 //trim() -> 앞 뒤 공백제거
 
-}
+
 </script>
 <body>
 <br>
