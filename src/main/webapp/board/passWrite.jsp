@@ -34,7 +34,7 @@ $(function(){
 			success : function(result){ //성공했을 경우 // controller -> "ok","fail"
 				if(result == "1") {
 					alert("삭제완료");
-					location : "boardList.do";
+					location = "boardList.do";
 				} else if(result == "-1") {
 					alert("암호가 일치하지 않습니다.");
 				} else {

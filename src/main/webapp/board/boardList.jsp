@@ -15,6 +15,7 @@
 <style>
 .wrap { margin : 0 auto; width : 800px; height : 1200px;}
 body { font-size : 9pt;}
+a { text-decoration: none; color : black; }
 button { font-size:9pt;padding : 3px;width : 100px; background-color : black;border-radius: 5px;
 		border : none;color : white;}
 table{ width : 600px; border-collapse: collapse; }
@@ -25,7 +26,15 @@ table caption { font-size : 15pt; margin-bottom : 5px; }
 .div2 { width:600px;text-align : left; font-size : 8pt;  }
 </style>
 <body>
-
+<table>
+	<tr>
+		<th width="25%">홈</th>
+		<th width="25%"><a href="/myproject_new/boardList.do">게시판</a></th>
+		<th width="25%"><a href="/myproject_new/memberWrite.do">회원가입</a></th>
+		<th width="25%"><a href="/myproject_new/loginWrite.do">로그인</a></th>
+	</tr>
+</table>
+<br>
 <table>
 <div class="div1">일반게시판 목록</div>
 <div class="div2">Total : ${total }개</div>
