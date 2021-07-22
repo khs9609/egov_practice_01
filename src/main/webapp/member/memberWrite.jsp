@@ -8,47 +8,68 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 화면</title>
+
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
+  
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
   <script>
   $( function() {
     $( "#birth" ).datepicker({
       changeMonth: true,
       changeYear: true
     });
-  } );
-  
-  $("#btn_submit").click(function() {
-	  
-	  var userid = $("#userid").val();
-	  var pass = $("#pass").val();
-	  var name = $("#name").val();
-	  userid = $.trim(userid);
-	  pass = $.trim(pass);
-	  name = $.trim(name);
-	  
-	  if(userid == ""){
-	  	alert("아이디를 입력해주세요");
-	  	$("#userid").focus();
-	  	return false;
-	  }
-	  if(pass == ""){
-	  	alert("패스워드를 입력해주세요");
-	  	$("#pass").focus();
-	  	return false;
-	  }
-	  if(name == ""){
-	  	alert("이름를 입력해주세요");
-	  	$("#name").focus();
-	  	return false;
-	  }
-	  $("#userid").val(userid);
-	  $("#pass").val(pass);
-	  $("#name").val(name);
-	  
-	  
+    
+    $("#btn_submit").click(function() {
+  	  var userid = $("#userid").val();
+  	  var pass = $("#pass").val();
+  	  var name = $("#name").val();
+  	  userid = $.trim(userid);
+  	  pass = $.trim(pass);
+  	  name = $.trim(name);
+  	  if(userid == "") {
+  	  	alert("아이디를 입력해주세요");
+  	  	$("#userid").focus();
+  	  	return false;
+  	  }
+  	  if(pass == "") {
+  	  	alert("패스워드를 입력해주세요");
+  	  	$("#pass").focus();
+  	  	return false;
+  	  }
+  	  if(name == "") {
+  	  	alert("이름를 입력해주세요");
+  	  	$("#name").focus();
+  	  	return false;
+  	  }
+  	  $("#userid").val(userid);
+  	  $("#pass").val(pass);
+  	  $("#name").val(name);
+/* ------------------------------------------ */
+	var formData = $("#frm").serialize();
+  	$.ajax({
+		type : "POST",
+		data : formData,
+		url : "memberWriteSave.do", // 실제경로 , 저장주소
+		dataType : "text", //리턴 타입
+		
+		success : function(result){ //성공했을 경우 // controller -> "ok","fail"
+			if(result == "ok") {
+				alert("가입완료");
+				location= "loginWrite.do";
+			} else {
+				alert("가입실패 \n 관리자에게 문의해주세요");				
+			}
+		},
+		error : function() { // 실패했을 경우
+			alert("오류발생"); //여기서의 오류가 뜬다면 거의 시스템 오류일 것이다.(장애발생)
+		}
+	});
+  	  
+    });
+    
   });
   
   
@@ -80,11 +101,11 @@ table caption { font-size : 15pt; margin : 5px; }
 	</tr>
 </table>
 
-<form id="frm">
+<form id="frm" name="frm">
 <table>
 	<caption>회원가입 폼</caption>
 	<tr>
-		<th><label for="userid">아이디</label></th>
+		<th><label for="id">아이디</label></th>
 		<td>
 		<input type="text" name="userid" id="userid" placeholder="아이디입력">
 		<button type="button" class="btn1" onclick="" >아이디 중복체크</button>
@@ -107,14 +128,14 @@ table caption { font-size : 15pt; margin : 5px; }
 	</tr>
 	<tr>
 		<th><label for="birth">생년월일</label></th>
-		<td><input type="text" name="birth" id="birth" readonly></td>
+		<td><input type="text" name="birth" id="birth"></td>
 	</tr>
 	<tr>
 		<th><label for="phone">연락처</label></th>
 		<td><input type="text" name="phone" id="phone"> (예)010-1234-1234</td>
 	</tr>
 	<tr>
-		<th><label for="zipcode">우편번호</label></th>
+		<th><label for="addr">우편번호</label></th>
 		<td>
 		<input type="text" name="zipcode" id="zipcode">
 		<button type="button" class="btn1">우편번호 검색</button>
@@ -125,7 +146,7 @@ table caption { font-size : 15pt; margin : 5px; }
 </table>
 <br>
 <div class="div_button">
-	<button type="submit" id="btn_submit" >저장</button>
+	<button type="button" id="btn_submit">저장</button>
 	<button type="reset">취소</button>
 </div>
 </form>

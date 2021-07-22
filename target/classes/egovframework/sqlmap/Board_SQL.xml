@@ -94,6 +94,10 @@
 			WHERE unq=#unq# AND pass=#pass#
 	</delete>
 	
+	<insert id="">
+		
+	</insert>
+	
 </sqlMap>
 
 
