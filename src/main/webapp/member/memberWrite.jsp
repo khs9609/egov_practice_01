@@ -22,6 +22,48 @@
       changeYear: true
     });
     
+    $("#btn_zipcode").click(function(){
+    	var w = 500;
+    	var h = 200;
+    	var url = "post1.do";
+    	
+    	window.open(url,"zipcode",'width='+w+",height="+h);
+    	
+    	
+    });
+    
+    
+    $("#btn_idcheck").click( function() {
+    	
+    	var userid = $.trim( $("#userid").val() ); // 현재 창에 입력된 창
+    	
+    	if(userid == ""){
+    		alert("아이디를 입력해주세요");
+			$("#userid").focus();	    		
+    		return false;
+    	}
+    	
+    	//idcheck.do로 이동
+    	$.ajax({
+    		type : "POST",
+    		data : "userid="+userid, // 이렇게 작성되는 것을 json 타입이라 한다.
+    		url : "idcheck.do", 
+    		dataType : "text", 
+    		
+    		success : function(result){
+    			if(result == "ok") {
+    				alert("사용가능한 아이디입니다.");
+    			} else {
+    				alert("이미 사용중인 아이디입니다.");				
+    			}
+    		},
+    		error : function() { 
+    			alert("오류발생"); 
+    		}
+    	});
+    	
+    });
+    
     $("#btn_submit").click(function() {
   	  var userid = $("#userid").val();
   	  var pass = $("#pass").val();
@@ -108,7 +150,7 @@ table caption { font-size : 15pt; margin : 5px; }
 		<th><label for="id">아이디</label></th>
 		<td>
 		<input type="text" name="userid" id="userid" placeholder="아이디입력">
-		<button type="button" class="btn1" onclick="" >아이디 중복체크</button>
+		<button type="button" class="btn1" id="btn_idcheck" >아이디 중복체크</button>
 		</td>
 	</tr>
 	<tr>
@@ -138,7 +180,7 @@ table caption { font-size : 15pt; margin : 5px; }
 		<th><label for="addr">우편번호</label></th>
 		<td>
 		<input type="text" name="zipcode" id="zipcode">
-		<button type="button" class="btn1">우편번호 검색</button>
+		<button type="button" class="btn1" id="btn_zipcode">우편번호 검색</button>
 		<br>
 		<input type="text" name="address" id="address">
 		</td>

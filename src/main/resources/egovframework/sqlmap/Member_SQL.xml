@@ -27,5 +27,25 @@
 						#address#
 					)
 	</insert>
+	
+	<select id="memberDAO.selectMemberIdcheck" resultClass="java.lang.Integer">
+		SELECT COUNT(*) FROM member	
+			WHERE userid=#userid#
+	</select>
+	
+	<select id="memberDAO.selectPostList" resultClass="egovMap">
+		SELECT 	'[' || a1 || ']' ||
+				' ' || a2 ||
+				' ' || a3 ||
+				' ' || a4 ||
+				' ' || a5 ||
+				' ' || a6 ||
+				' ' || a7 ||
+				' ' || a8
+					as addr
+		FROM post
+		WHERE 	a4 LIKE '%'||#dong#||'%'
+		OR		a5 LIKE '%'||#dong#||'%'
+	</select>
 
 </sqlMap>
