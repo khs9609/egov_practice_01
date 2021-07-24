@@ -134,14 +134,7 @@ table caption { font-size : 15pt; margin : 5px; }
 </style>
 
 <body>
-<table>
-	<tr>
-		<th width="25%">홈</th>
-		<th width="25%"><a href="/myproject_new/boardList.do">게시판</a></th>
-		<th width="25%"><a href="/myproject_new/memberWrite.do">회원가입</a></th>
-		<th width="25%"><a href="/myproject_new/loginWrite.do">로그인</a></th>
-	</tr>
-</table>
+<%@ include file="../include/topmenu.jsp" %>
 
 <form id="frm" name="frm">
 <table>

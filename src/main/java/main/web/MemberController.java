@@ -3,6 +3,7 @@ package main.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -65,5 +66,36 @@ public class MemberController {
 		
 		return "member/post2";
 	}
+	@RequestMapping("/loginWrite.do")
+	public String loginWrite() {
+		return "member/loginWrite";
+	}
+	
+	@RequestMapping("/loginWriteSub.do")
+	@ResponseBody
+	public String loginProcessing(MemberVO vo,HttpSession session) throws Exception {
+		
+		String message = "";
+		int count = memberService.selectMemberCount(vo);
+		if(count == 1) {
+			//session 생성
+			session.setAttribute("SessionUserId", vo.getUserid());
+			
+			//message 처리
+			message = "ok";
+		}
+		
+		return message;
+	}
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session){
+		
+		session.removeAttribute("SessionUserId");
+		
+		return "member/loginWrite";
+	}
 	
 }
+
+
+

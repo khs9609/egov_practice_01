@@ -12,4 +12,7 @@ public interface MemberService {
 	
 	//우편번호 검색
 	public List<?> selectPostList(String dong) throws Exception;
+	
+	//로그인 데이터 확인
+	public int selectMemberCount(MemberVO vo) throws Exception;
 }
