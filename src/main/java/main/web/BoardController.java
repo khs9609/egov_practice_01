@@ -41,7 +41,7 @@ public class BoardController {
 	public String selectNBoardList(BoardVO vo, ModelMap model) throws Exception {
 		
 		// 보여줄 페이지 수 설정(보여줄 페이지를 수정할 때 변수 값만 변경하면 되도록)
-		int unit = 8;
+		int unit = 10;
 		
 		/* Total개수 가져오기 */
 		int total = boardService.selectNBoardTotal(vo);
